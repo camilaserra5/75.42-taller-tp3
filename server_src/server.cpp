@@ -7,7 +7,6 @@ Server::Server(Socket &socket, std::string rootFile) : socket(std::move(socket))
 
 }
 
-
 void Server::run() {
     while (true) {
         Socket client = this->socket.accept();
@@ -25,5 +24,6 @@ Server::~Server() {
     for (ClientProcessor *cli : this->clients) {
         delete cli;
     }
+    //delete this->socket;
     this->join();
 }

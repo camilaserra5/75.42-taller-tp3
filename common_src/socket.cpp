@@ -49,7 +49,7 @@ int Socket::connect(char *host, char *port) {
 
     this->fd = temp_fd;
     freeaddrinfo(addr_info);
-    return this->fd != -1;
+    return (this->fd != -1) ? 0 : -1;
 }
 
 int Socket::bind(char *port) {

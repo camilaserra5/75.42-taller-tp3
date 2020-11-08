@@ -14,6 +14,7 @@ int main(int argc, char *argv[]) {
     Socket socket;
     if (socket.connect(host, port) != 0) {
         // todo error
+        std::cout << "connect error";
         return -1;
     }
 

@@ -14,10 +14,12 @@ int main(int argc, char *argv[]) {
     Socket socket;
     if (socket.bind(port) == -1) {
         // todo error
+        std::cout << "bind error";
         return -1;
     }
-    if (socket.listen() != -1) {
+    if (socket.listen() == -1) {
         // todo error
+        std::cout << "listen error";
         return -1;
     }
     Server server(socket, rootFile);

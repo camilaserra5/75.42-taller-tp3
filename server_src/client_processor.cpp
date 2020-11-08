@@ -1,11 +1,10 @@
 #include "client_processor.h"
-
+#include <iostream>
 ClientProcessor::ClientProcessor(Socket &socket) : socket(std::move(socket)) {
     this->is_alive = true;
 }
 
 void ClientProcessor::run() {
-
 }
 
 bool ClientProcessor::isAlive() {
@@ -14,5 +13,5 @@ bool ClientProcessor::isAlive() {
 
 ClientProcessor::~ClientProcessor() {
     this->is_alive = false;
-    // todo delete socket?
+//    delete this->socket;
 }
