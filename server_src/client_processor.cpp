@@ -13,5 +13,4 @@ bool ClientProcessor::isAlive() {
 
 ClientProcessor::~ClientProcessor() {
     this->is_alive = false;
-//    delete this->socket;
 }

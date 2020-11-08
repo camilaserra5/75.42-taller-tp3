@@ -9,5 +9,5 @@ void Client::run() {
 }
 
 Client::~Client() {
-//    delete this->socket;
+
 }

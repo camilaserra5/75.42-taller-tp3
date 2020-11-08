@@ -24,6 +24,5 @@ Server::~Server() {
     for (ClientProcessor *cli : this->clients) {
         delete cli;
     }
-    //delete this->socket;
     this->join();
 }
