@@ -2,14 +2,18 @@
 #define CLIENT_H
 
 #include <string>
+#include "../common_src/socket.h"
 
 class Client {
 public:
-    Client(std::string host, std::string port);
+    Client(Socket &socket);
 
     void run();
 
+    ~Client();
+
 private:
+    Socket socket;
 
 };
 

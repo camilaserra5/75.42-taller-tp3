@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "client.h"
+#include "../common_src/socket.h"
 
 int main(int argc, char *argv[]) {
     if (argc != 3) {
@@ -8,9 +9,15 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    std::string host = argv[1];
-    std::string port = argv[2];
-    Client client(host, port);
+    char *host = argv[1];
+    char *port = argv[2];
+    Socket socket;
+    if (socket.connect(host, port) != 0) {
+        // todo error
+        return -1;
+    }
+
+    Client client(socket);
     client.run();
     return 0;
 }

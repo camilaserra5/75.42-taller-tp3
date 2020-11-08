@@ -2,15 +2,17 @@
 #define SERVER_H
 
 #include <string>
+#include "../common_src/socket.h"
 
 class Server {
 public:
-    Server(std::string port, std::string rootFile);
+    Server(Socket& socket, std::string rootFile);
 
     void run();
 
 private:
-
+    Socket socket;
+    std::string rootFile;
 };
 
 

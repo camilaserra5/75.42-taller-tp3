@@ -2,7 +2,7 @@
 #include <iostream>
 #include "server.h"
 
-Server::Server(std::string port, std::string rootFile) {
+Server::Server(Socket &socket, std::string rootFile) : socket(std::move(socket)), rootFile(rootFile) {
 }
 
 
