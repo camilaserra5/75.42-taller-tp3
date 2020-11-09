@@ -21,7 +21,7 @@ public:
     std::string getBody();
 
 private:
-    std::vector<std::string> tokens;
+    std::vector <std::string> tokens;
     std::string line;
     std::string body;
 };

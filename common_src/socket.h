@@ -31,7 +31,7 @@ public:
     int recv(char *buffer, size_t buffer_length);
 
     void closeWrite();
-    
+
     void closeRead();
 
     ~Socket();
