@@ -13,18 +13,19 @@ void ClientManager::run() {
         this->clients.push_back(new ClientProcessor(std::move(client)));
         this->clients.back()->start();
 
-        /*for (ClientProcessor *cli : this->clients) {
-            if (!cli->isAlive()) {
-                delete cli;
+        for (unsigned int i = 0; i < this->clients.size(); i++) {
+            if (!this->clients[i]->isAlive()) {
+                delete this->clients[i];
+                this->clients.erase(this->clients.begin() + i);
+                std::cout << "remove client";
             }
-        }*/
+        }
     }
 }
 
 ClientManager::~ClientManager() {
     std::cout << "cli man close";
     for (ClientProcessor *cli : this->clients) {
-        //cli->join();
         delete cli;
     }
     this->socket.close();

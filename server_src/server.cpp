@@ -1,6 +1,7 @@
 #include <vector>
 #include <iostream>
 #include "server.h"
+#include <cstring>
 
 Server::Server(Socket socket, std::string rootFile) : rootFile(rootFile),
                                                       clientManager(std::move(socket)) {
@@ -8,9 +9,7 @@ Server::Server(Socket socket, std::string rootFile) : rootFile(rootFile),
 }
 
 void Server::run() {
-    std::string input;
-    while (input != "q") {
-        std::cin >> input;
+    while (std::cin.get() != 'q') {
     }
 }
 
