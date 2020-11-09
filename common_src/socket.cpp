@@ -88,14 +88,9 @@ int Socket::listen() {
 Socket Socket::accept() {
     int fd = ::accept(this->fd, nullptr, nullptr);
     if (fd == -1) {
-        // todo error
+        throw std::invalid_argument("socket closed");
     }
     return Socket(fd);
-}
-
-void Socket::close() {
-    ::shutdown(this->fd, SHUT_RDWR);
-    ::close(this->fd);
 }
 
 int Socket::send(char *buffer, size_t buffer_length) {
@@ -126,6 +121,11 @@ int Socket::recv(char *buffer, size_t buffer_length) {
         }
     }
     return total;
+}
+
+void Socket::close() {
+    ::shutdown(this->fd, SHUT_RDWR);
+    ::close(this->fd);
 }
 
 Socket::~Socket() {
