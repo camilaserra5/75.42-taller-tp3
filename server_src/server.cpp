@@ -2,8 +2,8 @@
 #include <iostream>
 #include "server.h"
 
-Server::Server(Socket &socket, std::string rootFile) : socket(std::move(socket)), rootFile(rootFile),
-                                                       clientManager(socket) {
+Server::Server(Socket socket, std::string rootFile) : rootFile(rootFile),
+                                                      clientManager(std::move(socket)) {
     this->clientManager.start();
 }
 

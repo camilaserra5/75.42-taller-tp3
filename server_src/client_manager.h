@@ -7,16 +7,17 @@
 
 class ClientManager : public Thread {
 public:
-    ClientManager(Socket &socket);
+    ClientManager(Socket socket);
 
     void run() override;
 
-    ~ClientManager();
+    ~ClientManager() override;
 
 private:
     Socket socket;
 
     std::vector<ClientProcessor *> clients;
+
 };
 
 #endif //CLIENT_MANAGER_H

@@ -7,14 +7,13 @@
 
 class Server {
 public:
-    Server(Socket &socket, std::string rootFile);
+    Server(Socket socket, std::string rootFile);
 
     void run();
 
     ~Server();
 
 private:
-    Socket socket;
     std::string rootFile;
     ClientManager clientManager;
 };

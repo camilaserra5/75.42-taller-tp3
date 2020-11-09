@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
         std::cout << "listen error";
         return 1;
     }
-    Server server(socket, rootFile);
+    Server server(std::move(socket), rootFile);
     server.run();
     return 0;
 }

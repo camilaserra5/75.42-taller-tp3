@@ -1,11 +1,12 @@
 #include "client_processor.h"
 #include <iostream>
-ClientProcessor::ClientProcessor(Socket &socket) : socket(std::move(socket)) {
-    this->is_alive = true;
+
+ClientProcessor::ClientProcessor(Socket socket) : socket(std::move(socket)) {
+
 }
 
 void ClientProcessor::run() {
-    std::cout << "cli proc run!";
+    std::cerr << "cli proc run!";
     this->is_alive = false;
 }
 
@@ -14,6 +15,6 @@ bool ClientProcessor::isAlive() {
 }
 
 ClientProcessor::~ClientProcessor() {
-    this->is_alive = false;
-   // this->join();
+    this->socket.close();
+    this->join();
 }

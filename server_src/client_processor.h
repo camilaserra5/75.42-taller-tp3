@@ -6,7 +6,7 @@
 
 class ClientProcessor : public Thread {
 public:
-    ClientProcessor(Socket &socket);
+    ClientProcessor(Socket socket);
 
     void run() override;
 
@@ -17,7 +17,7 @@ public:
 private:
     Socket socket;
 
-    bool is_alive;
+    bool is_alive = true;
 };
 
 #endif //CLIENT_PROCESSOR_H
