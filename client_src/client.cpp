@@ -1,7 +1,7 @@
 #include <iostream>
 #include "client.h"
 
-Client::Client(Socket &socket) : socket(std::move(socket)) {
+Client::Client(Socket socket) : socket(std::move(socket)) {
 
 }
 

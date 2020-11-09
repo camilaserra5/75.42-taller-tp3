@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
         return -1;
     }
 
-    Client client(socket);
+    Client client(std::move(socket));
     client.run();
     return 0;
 }

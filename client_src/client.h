@@ -6,7 +6,7 @@
 
 class Client {
 public:
-    Client(Socket &socket);
+    Client(Socket socket);
 
     void run();
 
