@@ -6,6 +6,7 @@
 #include <vector>
 #include "http_method.h"
 #include <memory>
+
 class Protocol {
 public:
 
@@ -15,7 +16,7 @@ public:
 
     std::string getMethodStr();
 
-    std::unique_ptr<HTTPMethod> getMethod();
+    std::unique_ptr <HTTPMethod> getMethod();
 
     std::string getResource();
 

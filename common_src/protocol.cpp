@@ -26,7 +26,7 @@ std::string Protocol::getMethodStr() {
 }
 
 
-std::unique_ptr<HTTPMethod> Protocol::getMethod() {
+std::unique_ptr <HTTPMethod> Protocol::getMethod() {
     if (getMethodStr() == "GET") {
         if (getResource() == "/") {
             return std::unique_ptr<HTTPMethod>(new Get());
