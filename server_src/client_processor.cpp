@@ -36,15 +36,14 @@ void ClientProcessor::run() {
 
     Protocol protocol(line, body.str());
     // imprimir primera linea petitorio
-    std::cerr << "prim" << protocol.getFirstLine() << std::endl;
-    std::cerr << protocol.getMethodStr() << std::endl;
-    std::cerr << protocol.getResource() << std::endl;
-    std::cerr << protocol.getProtocol() << std::endl;
-    std::cerr << "body" << protocol.getBody() << std::endl;
+    std::cerr << protocol.getFirstLine() << std::endl;
+
 
     // enviar response
-    char buf[9] = "holahola";
-    this->socket.send(buf, 10);
+    std::string resp = protocol.getMethod()->process();
+    char * my_argument = const_cast<char*> (resp.c_str());
+
+    this->socket.send(my_argument, resp.length());
     this->socket.closeRead();
     this->socket.closeWrite();
     this->is_alive = false;

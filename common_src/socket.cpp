@@ -137,7 +137,6 @@ void Socket::closeRead() {
 }
 
 Socket::~Socket() {
-    std::cout << "socket delte";
     if (this->fd != -1) {
         ::shutdown(this->fd, SHUT_RDWR);
         ::close(this->fd);
