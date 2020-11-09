@@ -5,6 +5,7 @@
 #include "http_method.h"
 
 class PostResource : public HTTPMethod {
+    using HTTPMethod::HTTPMethod;
 };
 
 

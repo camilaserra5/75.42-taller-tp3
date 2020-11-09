@@ -5,7 +5,7 @@
 
 class GetResource : public HTTPMethod {
 
-
+    using HTTPMethod::HTTPMethod;
 };
 
 

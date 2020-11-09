@@ -37,7 +37,7 @@ void ClientProcessor::run() {
     Protocol protocol(line, body.str());
     // imprimir primera linea petitorio
     std::cerr << "prim" << protocol.getFirstLine() << std::endl;
-    std::cerr << protocol.getMethod() << std::endl;
+    std::cerr << protocol.getMethodStr() << std::endl;
     std::cerr << protocol.getResource() << std::endl;
     std::cerr << protocol.getProtocol() << std::endl;
     std::cerr << "body" << protocol.getBody() << std::endl;

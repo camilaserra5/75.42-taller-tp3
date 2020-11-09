@@ -3,3 +3,7 @@
 //
 
 #include "http_method.h"
+
+HTTPMethod::HTTPMethod() {
+
+}
