@@ -30,7 +30,9 @@ public:
 
     int recv(char *buffer, size_t buffer_length);
 
-    void close();
+    void closeWrite();
+    
+    void closeRead();
 
     ~Socket();
 

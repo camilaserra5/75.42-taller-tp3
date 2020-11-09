@@ -128,9 +128,12 @@ int Socket::recv(char *buffer, size_t buffer_length) {
     return total;
 }
 
-void Socket::close() {
-    ::shutdown(this->fd, SHUT_RDWR);
-    ::close(this->fd);
+void Socket::closeWrite() {
+    ::shutdown(this->fd, SHUT_WR);
+}
+
+void Socket::closeRead() {
+    ::shutdown(this->fd, SHUT_RD);
 }
 
 Socket::~Socket() {

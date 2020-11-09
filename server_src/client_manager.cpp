@@ -28,6 +28,7 @@ ClientManager::~ClientManager() {
     for (ClientProcessor *cli : this->clients) {
         delete cli;
     }
-    this->socket.close();
+    this->socket.closeRead();
+    this->socket.closeWrite();
     this->join();
 }
