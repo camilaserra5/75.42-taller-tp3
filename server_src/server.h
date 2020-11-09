@@ -2,25 +2,21 @@
 #define SERVER_H
 
 #include <string>
-#include <vector>
 #include "../common_src/socket.h"
-#include "../common_src/thread.h"
-#include "client_processor.h"
+#include "client_manager.h"
 
-class Server : public Thread {
+class Server {
 public:
     Server(Socket &socket, std::string rootFile);
 
-    void run() override;
+    void run();
 
-    ~Server() override;
+    ~Server();
 
 private:
     Socket socket;
-
-    std::vector<ClientProcessor *> clients;
-
     std::string rootFile;
+    ClientManager clientManager;
 };
 
 

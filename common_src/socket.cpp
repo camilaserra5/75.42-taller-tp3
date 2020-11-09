@@ -49,7 +49,7 @@ int Socket::connect(char *host, char *port) {
 
     this->fd = temp_fd;
     freeaddrinfo(addr_info);
-    return (this->fd != -1) ? 0 : -1;
+    return this->fd == -1;
 }
 
 int Socket::bind(char *port) {
@@ -78,11 +78,11 @@ int Socket::bind(char *port) {
 
     this->fd = temp_fd;
     freeaddrinfo(addr_info);
-    return this->fd != -1;
+    return this->fd == -1;
 }
 
 int Socket::listen() {
-    return ::listen(this->fd, MAX_CONNECTIONS) != -1;
+    return ::listen(this->fd, MAX_CONNECTIONS) != 0;
 }
 
 Socket Socket::accept() {
@@ -91,6 +91,11 @@ Socket Socket::accept() {
         // todo error
     }
     return Socket(fd);
+}
+
+void Socket::close() {
+    ::shutdown(this->fd, SHUT_RDWR);
+    ::close(this->fd);
 }
 
 int Socket::send(char *buffer, size_t buffer_length) {
@@ -124,6 +129,7 @@ int Socket::recv(char *buffer, size_t buffer_length) {
 }
 
 Socket::~Socket() {
+    std::cout << "socket delte";
     if (this->fd != -1) {
         ::shutdown(this->fd, SHUT_RDWR);
         ::close(this->fd);
