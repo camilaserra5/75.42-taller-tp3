@@ -17,7 +17,7 @@ public:
 private:
     Socket socket;
 
-    bool is_alive = true;
+    bool is_alive;
 };
 
 #endif //CLIENT_PROCESSOR_H

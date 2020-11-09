@@ -4,15 +4,15 @@
 
 ClientManager::ClientManager(Socket socket) : socket(std::move(socket)) {
 
-
 }
 
 void ClientManager::run() {
-    while (true) {
-        Socket client = this->socket.accept();
+    Socket client;
+    while ((client = this->socket.accept()).valid()) {
         std::cerr << "new cli!!";
         this->clients.push_back(new ClientProcessor(std::move(client)));
         this->clients.back()->start();
+
         /*for (ClientProcessor *cli : this->clients) {
             if (!cli->isAlive()) {
                 delete cli;

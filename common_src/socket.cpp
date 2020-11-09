@@ -8,7 +8,11 @@ Socket::Socket(int fd) {
 }
 
 Socket::Socket() {
-    // todo
+    this->fd = -1;
+}
+
+bool Socket::valid() {
+    return this->fd != -1;
 }
 
 Socket::Socket(Socket &&socket) {
@@ -88,7 +92,8 @@ int Socket::listen() {
 Socket Socket::accept() {
     int fd = ::accept(this->fd, nullptr, nullptr);
     if (fd == -1) {
-        throw std::invalid_argument("socket closed");
+        std::cout << "socket closed";
+        return Socket();
     }
     return Socket(fd);
 }

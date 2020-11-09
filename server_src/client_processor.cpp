@@ -2,7 +2,7 @@
 #include <iostream>
 
 ClientProcessor::ClientProcessor(Socket socket) : socket(std::move(socket)) {
-
+    this->is_alive = true;
 }
 
 void ClientProcessor::run() {

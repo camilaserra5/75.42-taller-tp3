@@ -22,6 +22,8 @@ public:
 
     int listen();
 
+    bool valid();
+
     Socket accept();
 
     int send(char *buffer, size_t buffer_length);
