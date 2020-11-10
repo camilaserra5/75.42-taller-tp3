@@ -15,11 +15,9 @@ public:
 
     std::string getMethodStr();
 
-    std::unique_ptr <HTTPMethod> getMethod();
+    std::unique_ptr <HTTPMethod> getMethod(ResourceList resourceList);
 
     std::string getResource();
-
-    std::string getProtocol();
 
     std::string getBody();
 

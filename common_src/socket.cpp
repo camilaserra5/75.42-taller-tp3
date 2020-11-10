@@ -94,7 +94,6 @@ int Socket::listen() {
 Socket Socket::accept() {
     int fd = ::accept(this->fd, nullptr, nullptr);
     if (fd == -1) {
-        std::cout << "socket closed";
         return Socket();
     }
     return Socket(fd);

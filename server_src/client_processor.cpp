@@ -38,10 +38,10 @@ void ClientProcessor::run() {
 
     Protocol protocol(line, body.str());
     // imprimir primera linea petitorio
-    std::cerr << protocol.getFirstLine() << std::endl;
+    std::cout << protocol.getFirstLine() << std::endl;
 
     // enviar response
-    std::string resp = protocol.getMethod()->process(resourceList);
+    std::string resp = protocol.getMethod(resourceList)->process();
     char *my_argument = const_cast<char *> (resp.c_str());
     this->socket.send(my_argument, resp.length());
     this->socket.closeRead();

@@ -10,14 +10,17 @@ public:
 
     explicit HTTPMethod(const std::string &methodName);
 
-    HTTPMethod(const std::string &resourceName, const std::string &body);
+    HTTPMethod(const std::string &resourceName,
+               const std::string &body,
+               const ResourceList &resourceList);
 
-    virtual std::string process(ResourceList resourceList) = 0;
+    virtual std::string process() = 0;
 
 protected:
     std::string methodName;
     std::string resourceName;
     std::string body;
+    ResourceList resourceList;
 };
 
 #endif //HTTP_METHOD_H

@@ -8,7 +8,7 @@ class UnknownMethod : public HTTPMethod {
 public:
     using HTTPMethod::HTTPMethod;
 
-    std::string process(const ResourceList &resourceList) override;
+    std::string process() override;
 };
 
 #endif //UNKNOWN_METHOD_H

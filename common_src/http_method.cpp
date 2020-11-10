@@ -7,5 +7,6 @@ HTTPMethod::HTTPMethod(const std::string &methodName) :
         methodName(methodName) {}
 
 HTTPMethod::HTTPMethod(const std::string &resourceName,
-                       const std::string &body) :
-        resourceName(resourceName), body(body) {}
+                       const std::string &body,
+                       const ResourceList &resourceList) :
+        resourceName(resourceName), body(body), resourceList(resourceList) {}

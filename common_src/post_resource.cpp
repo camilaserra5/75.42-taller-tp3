@@ -2,7 +2,7 @@
 #include <string>
 #include "post_resource.h"
 
-std::string PostResource::process(ResourceList resourceList) {
+std::string PostResource::process() {
     resourceList.addResource(this->resourceName, this->body);
     std::string header = "HTTP/1.1 200 OK\n\n";
     std::stringstream stream;

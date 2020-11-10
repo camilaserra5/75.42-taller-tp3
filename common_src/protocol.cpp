@@ -27,13 +27,13 @@ std::string Protocol::getMethodStr() {
 }
 
 
-std::unique_ptr <HTTPMethod> Protocol::getMethod() {
+std::unique_ptr <HTTPMethod> Protocol::getMethod(ResourceList resourceList) {
     if (getMethodStr() == "GET") {
         if (getResource() == "/") {
             return std::unique_ptr<HTTPMethod>(new Get());
         } else {
             return std::unique_ptr<HTTPMethod>(
-                    new GetResource(getResource(), getBody()));
+                    new GetResource(getResource(), getBody(), resourceList));
         }
     }
     if (getMethodStr() == "POST") {
@@ -41,7 +41,7 @@ std::unique_ptr <HTTPMethod> Protocol::getMethod() {
             return std::unique_ptr<HTTPMethod>(new Post());
         } else {
             return std::unique_ptr<HTTPMethod>(
-                    new PostResource(getResource(), getBody()));
+                    new PostResource(getResource(), getBody(), resourceList));
         }
     }
     return std::unique_ptr<HTTPMethod>(
@@ -50,10 +50,6 @@ std::unique_ptr <HTTPMethod> Protocol::getMethod() {
 
 std::string Protocol::getResource() {
     return this->tokens.at(1);
-}
-
-std::string Protocol::getProtocol() {
-    return this->tokens.at(2);
 }
 
 std::string Protocol::getBody() {
