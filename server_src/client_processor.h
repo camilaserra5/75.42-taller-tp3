@@ -3,10 +3,11 @@
 
 #include "../common_src/socket.h"
 #include "../common_src/thread.h"
+#include "../common_src/resource_list.h"
 
 class ClientProcessor : public Thread {
 public:
-    ClientProcessor(Socket socket);
+    ClientProcessor(Socket socket, ResourceList resourceList);
 
     void run() override;
 
@@ -16,6 +17,8 @@ public:
 
 private:
     Socket socket;
+
+    ResourceList resourceList;
 
     bool is_alive;
 };

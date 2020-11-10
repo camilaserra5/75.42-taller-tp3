@@ -3,8 +3,7 @@
 #include "server.h"
 #include <cstring>
 
-Server::Server(Socket socket, std::string rootFile) : rootFile(rootFile),
-                                                      clientManager(std::move(socket)) {
+Server::Server(Socket socket, std::string rootFile) : clientManager(std::move(socket), rootFile) {
     this->clientManager.start();
 }
 

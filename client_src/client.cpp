@@ -24,15 +24,15 @@ void Client::run() {
     this->socket.closeWrite();
 
     int cont = 64;
-    int offset = 0;
     while (cont == 64) {
-        char buf[65];
+        char buf[64];
+        memset(buf, 0, sizeof(buf));
         cont = this->socket.recv(buf, 64);
-        if (cont > 0) {
-            std::cout << buf << std::endl;
-        }
-        offset += cont;
+        std::cout << buf;
     }
+
+    std::cout << std::endl;
+
     this->socket.closeRead();
 }
 

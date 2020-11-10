@@ -31,17 +31,17 @@ std::unique_ptr <HTTPMethod> Protocol::getMethod() {
         if (getResource() == "/") {
             return std::unique_ptr<HTTPMethod>(new Get());
         } else {
-            return std::unique_ptr<HTTPMethod>(new GetResource());
+            return std::unique_ptr<HTTPMethod>(new GetResource(getResource(), getBody()));
         }
     }
     if (getMethodStr() == "POST") {
         if (getResource() == "/") {
             return std::unique_ptr<HTTPMethod>(new Post());
         } else {
-            return std::unique_ptr<HTTPMethod>(new PostResource());
+            return std::unique_ptr<HTTPMethod>(new PostResource(getResource(), getBody()));
         }
     }
-    return std::unique_ptr<HTTPMethod>(new UnknownMethod());
+    return std::unique_ptr<HTTPMethod>(new UnknownMethod(getMethodStr()));
 }
 
 

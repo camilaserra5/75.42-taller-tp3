@@ -14,7 +14,6 @@ public:
     ~Server();
 
 private:
-    std::string rootFile;
     ClientManager clientManager;
 };
 

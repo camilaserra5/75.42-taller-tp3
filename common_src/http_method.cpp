@@ -1,9 +1,13 @@
-//
-// Created by cami on 9/11/20.
-//
-
 #include "http_method.h"
 
 HTTPMethod::HTTPMethod() {
+
+}
+
+HTTPMethod::HTTPMethod(std::string methodName) : methodName(methodName) {
+    
+}
+
+HTTPMethod::HTTPMethod(std::string resourceName, std::string body) : resourceName(resourceName), body(body) {
 
 }

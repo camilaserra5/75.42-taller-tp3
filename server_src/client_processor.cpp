@@ -4,7 +4,8 @@
 #include <cstring>
 #include "../common_src/protocol.h"
 
-ClientProcessor::ClientProcessor(Socket socket) : socket(std::move(socket)) {
+ClientProcessor::ClientProcessor(Socket socket, ResourceList resourceList) : socket(std::move(socket)),
+                                                                             resourceList(resourceList) {
     this->is_alive = true;
 }
 
@@ -40,9 +41,8 @@ void ClientProcessor::run() {
 
 
     // enviar response
-    std::string resp = protocol.getMethod()->process();
-    char * my_argument = const_cast<char*> (resp.c_str());
-
+    std::string resp = protocol.getMethod()->process(resourceList);
+    char *my_argument = const_cast<char *> (resp.c_str());
     this->socket.send(my_argument, resp.length());
     this->socket.closeRead();
     this->socket.closeWrite();
