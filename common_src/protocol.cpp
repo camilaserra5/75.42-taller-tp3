@@ -8,7 +8,7 @@
 #include "post_resource.h"
 #include "unknown_method.h"
 
-Protocol::Protocol(std::string line, std::string body) :
+Protocol::Protocol(const std::string &line, const std::string &body) :
         line(line), body(body) {
     std::stringstream ss(this->line);
     std::string temp;

@@ -6,11 +6,11 @@
 
 class HTTPMethod {
 public:
-    explicit HTTPMethod();
+    HTTPMethod();
 
-    explicit HTTPMethod(std::string methodName);
+    explicit HTTPMethod(const std::string &methodName);
 
-    explicit HTTPMethod(std::string resourceName, std::string body);
+    HTTPMethod(const std::string &resourceName, const std::string &body);
 
     virtual std::string process(ResourceList resourceList) = 0;
 

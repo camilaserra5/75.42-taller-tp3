@@ -8,7 +8,7 @@ class Post : public HTTPMethod {
 public:
     using HTTPMethod::HTTPMethod;
 
-    std::string process(ResourceList resourceList) override;
+    std::string process(const ResourceList &resourceList) override;
 };
 
 #endif //POST_H

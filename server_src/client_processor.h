@@ -7,7 +7,7 @@
 
 class ClientProcessor : public Thread {
 public:
-    ClientProcessor(Socket socket, ResourceList resourceList);
+    ClientProcessor(Socket socket, const ResourceList& resourceList);
 
     void run() override;
 

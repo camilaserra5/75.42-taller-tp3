@@ -1,6 +1,7 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <utility>
 #include "../common_src/resource_list.h"
 #include "client_manager.h"
 #include "client_processor.h"
@@ -21,7 +22,7 @@ void ClientManager::run() {
     Socket client;
     while ((client = this->socket.accept()).valid()) {
         this->clients.push_back(new ClientProcessor(std::move(client),
-                                                    this->resourceList));
+                                                    resourceList));
         this->clients.back()->start();
         for (unsigned int i = 0; i < this->clients.size(); i++) {
             if (!this->clients[i]->isAlive()) {

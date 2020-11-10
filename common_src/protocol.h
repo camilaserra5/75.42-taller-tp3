@@ -9,7 +9,7 @@
 
 class Protocol {
 public:
-    Protocol(std::string line, std::string body);
+    Protocol(const std::string &line, const std::string &body);
 
     std::string getFirstLine();
 

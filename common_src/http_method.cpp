@@ -3,8 +3,9 @@
 
 HTTPMethod::HTTPMethod() {}
 
-HTTPMethod::HTTPMethod(std::string methodName) :
+HTTPMethod::HTTPMethod(const std::string &methodName) :
         methodName(methodName) {}
 
-HTTPMethod::HTTPMethod(std::string resourceName, std::string body) :
+HTTPMethod::HTTPMethod(const std::string &resourceName,
+                       const std::string &body) :
         resourceName(resourceName), body(body) {}

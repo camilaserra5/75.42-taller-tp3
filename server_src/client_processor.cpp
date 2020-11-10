@@ -1,25 +1,25 @@
 #include <iostream>
+#include <utility>
 #include <sstream>
 #include <cstring>
 #include <string>
 #include "../common_src/protocol.h"
 #include "client_processor.h"
 
-ClientProcessor::ClientProcessor(Socket socket, ResourceList resourceList) :
-        socket(std::move(socket)), resourceList(resourceList) {
+ClientProcessor::ClientProcessor(Socket socket, const ResourceList &list) :
+        socket(std::move(socket)), resourceList(list) {
     this->is_alive = true;
 }
 
 void ClientProcessor::run() {
-    std::string protocolStr;
+    std::string protocolStr = "";
     int cont = 64;
     while (cont == 64) {
         char buf[64];
         memset(buf, 0, sizeof(buf));
         cont = this->socket.recv(buf, 64);
-        for (char ch: buf) {
-            protocolStr.push_back(ch);
-        }
+        for (unsigned int i = 0; i < sizeof(buf); i++)
+            protocolStr.push_back(buf[i]);
     }
 
     std::stringstream stream(protocolStr);
