@@ -73,7 +73,9 @@ int Socket::bind(char *port) {
     bool cont = true;
     struct addrinfo *addr = addr_info;
     while (addr && cont) {
-        temp_fd = ::socket(addr->ai_family, addr->ai_socktype, addr->ai_protocol);
+        temp_fd = ::socket(addr->ai_family,
+                           addr->ai_socktype,
+                           addr->ai_protocol);
         if (::bind(temp_fd, addr->ai_addr, addr->ai_addrlen) == -1) {
             cont = false;
         }

@@ -1,9 +1,9 @@
-#include <vector>
 #include <iostream>
+#include <string>
 #include "server.h"
-#include <cstring>
 
-Server::Server(Socket socket, std::string rootFile) : clientManager(std::move(socket), rootFile) {
+Server::Server(Socket socket, std::string rootFile) :
+        clientManager(std::move(socket), rootFile) {
     this->clientManager.start();
 }
 
@@ -12,6 +12,4 @@ void Server::run() {
     }
 }
 
-Server::~Server() {
-
-}
+Server::~Server() {}

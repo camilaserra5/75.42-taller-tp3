@@ -6,7 +6,7 @@
 
 class Client {
 public:
-    Client(Socket socket);
+    explicit Client(Socket socket);
 
     void run();
 
@@ -14,7 +14,6 @@ public:
 
 private:
     Socket socket;
-
 };
 
 #endif //CLIENT_H

@@ -4,7 +4,6 @@
 #include <thread>
 
 class Thread {
-
 public:
     //Thread() {}
     Thread();
@@ -29,6 +28,5 @@ public:
 private:
     std::thread thread;
 };
-
 
 #endif //THREAD_H

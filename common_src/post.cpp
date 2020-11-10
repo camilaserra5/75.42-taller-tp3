@@ -1,3 +1,4 @@
+#include <string>
 #include "post.h"
 
 std::string Post::process(ResourceList resourceList) {

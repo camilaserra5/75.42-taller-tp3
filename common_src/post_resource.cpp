@@ -1,5 +1,6 @@
-#include "post_resource.h"
 #include <sstream>
+#include <string>
+#include "post_resource.h"
 
 std::string PostResource::process(ResourceList resourceList) {
     resourceList.addResource(this->resourceName, this->body);

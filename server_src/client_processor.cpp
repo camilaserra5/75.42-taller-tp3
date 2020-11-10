@@ -1,11 +1,12 @@
-#include "client_processor.h"
 #include <iostream>
 #include <sstream>
 #include <cstring>
+#include <string>
 #include "../common_src/protocol.h"
+#include "client_processor.h"
 
-ClientProcessor::ClientProcessor(Socket socket, ResourceList resourceList) : socket(std::move(socket)),
-                                                                             resourceList(resourceList) {
+ClientProcessor::ClientProcessor(Socket socket, ResourceList resourceList) :
+        socket(std::move(socket)), resourceList(resourceList) {
     this->is_alive = true;
 }
 
@@ -38,7 +39,6 @@ void ClientProcessor::run() {
     Protocol protocol(line, body.str());
     // imprimir primera linea petitorio
     std::cerr << protocol.getFirstLine() << std::endl;
-
 
     // enviar response
     std::string resp = protocol.getMethod()->process(resourceList);

@@ -1,12 +1,10 @@
+#include "client.h"
 #include <iostream>
 #include <string>
-#include "client.h"
 #include <sstream>
 #include <cstring>
 
-Client::Client(Socket socket) : socket(std::move(socket)) {
-
-}
+Client::Client(Socket socket) : socket(std::move(socket)) {}
 
 void Client::run() {
     std::string std_input;
@@ -36,6 +34,4 @@ void Client::run() {
     this->socket.closeRead();
 }
 
-Client::~Client() {
-
-}
+Client::~Client() {}

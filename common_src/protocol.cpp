@@ -1,14 +1,15 @@
 #include "protocol.h"
 #include <iostream>
 #include <cstring>
-
+#include <string>
 #include "get.h"
 #include "get_resource.h"
 #include "post.h"
 #include "post_resource.h"
 #include "unknown_method.h"
 
-Protocol::Protocol(std::string line, std::string body) : line(line), body(body) {
+Protocol::Protocol(std::string line, std::string body) :
+        line(line), body(body) {
     std::stringstream ss(this->line);
     std::string temp;
     while (ss >> temp) {
@@ -31,19 +32,21 @@ std::unique_ptr <HTTPMethod> Protocol::getMethod() {
         if (getResource() == "/") {
             return std::unique_ptr<HTTPMethod>(new Get());
         } else {
-            return std::unique_ptr<HTTPMethod>(new GetResource(getResource(), getBody()));
+            return std::unique_ptr<HTTPMethod>(
+                    new GetResource(getResource(), getBody()));
         }
     }
     if (getMethodStr() == "POST") {
         if (getResource() == "/") {
             return std::unique_ptr<HTTPMethod>(new Post());
         } else {
-            return std::unique_ptr<HTTPMethod>(new PostResource(getResource(), getBody()));
+            return std::unique_ptr<HTTPMethod>(
+                    new PostResource(getResource(), getBody()));
         }
     }
-    return std::unique_ptr<HTTPMethod>(new UnknownMethod(getMethodStr()));
+    return std::unique_ptr<HTTPMethod>(
+            new UnknownMethod(getMethodStr()));
 }
-
 
 std::string Protocol::getResource() {
     return this->tokens.at(1);

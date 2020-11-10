@@ -1,9 +1,10 @@
 #ifndef CLIENT_MANAGER_H
 #define CLIENT_MANAGER_H
 
+#include <vector>
+#include <string>
 #include "../common_src/socket.h"
 #include "client_processor.h"
-#include <vector>
 
 class ClientManager : public Thread {
 public:
@@ -19,6 +20,6 @@ private:
     std::vector<ClientProcessor *> clients;
 
     ResourceList resourceList;
-    };
+};
 
 #endif //CLIENT_MANAGER_H
