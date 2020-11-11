@@ -29,6 +29,7 @@ void ClientProcessor::run() {
     bool body_start = false;
     std::string temp;
     std::stringstream body;
+
     while (std::getline(stream, temp)) {
         if (body_start) {
             body << temp << std::endl;
@@ -36,12 +37,10 @@ void ClientProcessor::run() {
         body_start = body_start || temp.empty();
     }
 
-    Protocol protocol(line, body.str());
-    // imprimir primera linea petitorio
+    Protocol protocol(line, body.str().erase(body.str().size() - 1));
     std::cout << protocol.getFirstLine() << std::endl;
-
-    // enviar response
     std::string resp = protocol.getMethod(resourceList)->process();
+
     char *my_argument = const_cast<char *> (resp.c_str());
     this->socket.send(my_argument, resp.length());
     this->socket.closeRead();

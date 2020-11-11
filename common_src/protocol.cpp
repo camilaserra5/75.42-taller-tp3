@@ -30,22 +30,31 @@ std::string Protocol::getMethodStr() {
 std::unique_ptr <HTTPMethod> Protocol::getMethod(ResourceList resourceList) {
     if (getMethodStr() == "GET") {
         if (getResource() == "/") {
-            return std::unique_ptr<HTTPMethod>(new Get());
+            return std::unique_ptr<HTTPMethod>(new Get(getMethodStr(),
+                                                       resourceList));
         } else {
             return std::unique_ptr<HTTPMethod>(
-                    new GetResource(getResource(), getBody(), resourceList));
+                    new GetResource(getMethodStr(),
+                                    getResource(),
+                                    getBody(),
+                                    resourceList));
         }
     }
     if (getMethodStr() == "POST") {
         if (getResource() == "/") {
-            return std::unique_ptr<HTTPMethod>(new Post());
+            return std::unique_ptr<HTTPMethod>(new Post(getMethodStr(),
+                                                        resourceList));
         } else {
             return std::unique_ptr<HTTPMethod>(
-                    new PostResource(getResource(), getBody(), resourceList));
+                    new PostResource(getMethodStr(),
+                                     getResource(),
+                                     getBody(),
+                                     resourceList));
         }
     }
     return std::unique_ptr<HTTPMethod>(
-            new UnknownMethod(getMethodStr()));
+            new UnknownMethod(getMethodStr(),
+                              resourceList));
 }
 
 std::string Protocol::getResource() {

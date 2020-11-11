@@ -4,6 +4,8 @@
 #include <utility>
 #include "../common_src/resource_list.h"
 #include "client_manager.h"
+#include <iostream>
+
 #include "client_processor.h"
 
 ClientManager::ClientManager(Socket socket, std::string rootFile) :
@@ -14,6 +16,7 @@ ClientManager::ClientManager(Socket socket, std::string rootFile) :
     while (std::getline(infile, line)) {
         content << line;
     }
+    content << std::endl;
     infile.close();
     this->resourceList.addResource("/", content.str());
 }

@@ -25,17 +25,15 @@ void Client::run() {
     int cont = 64;
     while (cont == 64) {
         char buf[64];
+        buf[0] = 0;
         memset(buf, 0, sizeof(buf));
         cont = this->socket.recv(buf, 64);
         for (unsigned int i = 0; i < sizeof(buf); i++) {
             if (buf[i] != 0)
                 std::cout << buf[i];
         }
-
     }
-
-    std::cout << std::endl;
-
+    //std::cout << std::endl;
     this->socket.closeRead();
 }
 
