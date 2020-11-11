@@ -34,7 +34,6 @@ int Socket::connect(char *host, char *port) {
     hints.ai_family = AF_INET;
     hints.ai_socktype = SOCK_STREAM;
     if (getaddrinfo(NULL, port, &hints, &addr_info) != 0) {
-        // todo error
         return -1;
     }
 
@@ -65,7 +64,6 @@ int Socket::bind(char *port) {
     hints.ai_socktype = SOCK_STREAM;
     hints.ai_flags = AI_PASSIVE;
     if (getaddrinfo(NULL, port, &hints, &addr_info) != 0) {
-        // todo error
         return -1;
     }
 
