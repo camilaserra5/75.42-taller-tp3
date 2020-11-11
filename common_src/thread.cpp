@@ -1,9 +1,7 @@
 #include <utility>
 #include "thread.h"
 
-Thread::Thread() {
-    // todo keep or remove?
-}
+Thread::Thread() {}
 
 Thread::Thread(Thread &&other) {
     this->thread = std::move(other.thread);
@@ -22,6 +20,4 @@ void Thread::join() {
     this->thread.join();
 }
 
-Thread::~Thread() {
-    // todo keep or remove?
-}
+Thread::~Thread() {}

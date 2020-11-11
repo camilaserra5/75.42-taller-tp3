@@ -5,7 +5,6 @@
 
 class Thread {
 public:
-    //Thread() {}
     Thread();
 
     void start();
@@ -22,7 +21,6 @@ public:
 
     Thread &operator=(Thread &&thread);
 
-    //virtual ~Thread() {}
     virtual ~Thread();
 
 private:
