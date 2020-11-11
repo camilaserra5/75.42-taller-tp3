@@ -2,6 +2,7 @@
 #include <string>
 #include "post_resource.h"
 #include <iostream>
+
 std::string PostResource::process() {
     resourceList.addResource(this->resourceName, this->body);
     std::string header = "HTTP/1.1 200 OK\n\n";

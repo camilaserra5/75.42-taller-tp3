@@ -7,7 +7,7 @@
 
 class Server {
 public:
-    Server(Socket socket, const std::string& rootFile);
+    Server(Socket socket, const std::string &rootFile);
 
     void run();
 
