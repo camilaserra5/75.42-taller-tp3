@@ -104,7 +104,21 @@ Respuestas del servidor en cada caso:
     ``` 
 
 ## Diseño
+A continuación se muestran dos diagramas de secuencia (uno para el servidor y uno para el cliente) del camino feliz del programa.
 
+### Servidor
+![](http://www.plantuml.com/plantuml/png/ZPD1JmCX48Nl_8gnfzr4stiJJOrNJOp6KzCO2jEMI645TklF5nQowMIxriCUPkUzZ-41An-u2-rHiuEI23jhmzR-C2w2TV3XqR4czfLG3JS1OjsX-pnoPHXflAS6rJvfXIQySCFtwAZOYYyCBD7Xxk4SkeJv8fUmRgmB6rWxQmFibCODOsVAQ2mSMC9M6LabVJqfqSe7D5NDc7380vQ9H_g-Z7g3fyhtvbj88wG9wXIBwixSXKMtcdk9HlvVXr8CgHBj3RrjdS1dvTEEk9JLR35Bf98G26j2zDHCuWJqZ-7wYr1DZiEqjGsS3lqwVGUKXuvh9Uce97Ok13Q4cbkiACPp57ZU0h4GuSXP4idkcfxCgxC2lRSNGgM2SaY54gCjaQVRKryt3o7ci3B5_yUd_ADM7TBuwUYqlXn0OZ29amokGn5T3HCTzpZ4YKOEt_JbcdnDhZNLwFNaa5WkY5meCzzZp15kxk5xM9IwsIh-Ru_w5m00)
+
+### Cliente
+![](http://www.plantuml.com/plantuml/png/VOz1JyCm38Nl_XK-jXAm-mve4gUTa428mpIXB75PHEj4YJFu-JIr1Eqsw2NgUzzxjZTPJ98oz73qZh0BGGxX2uoLaF0bKu8u-jxwQ5ZGzfvOtWRZUQ4_JFf2UWxsWmIWTk3j_JownhkL_kBEnzKnPDdZBeOaUu0PLsDQWskqWPciD9M-mGgt8vp82EbuES-gNBDCdqsUYjg_eLIuQUlX_ZJhr6VQHDoMH-wTPCkno0-g3gW_RpoKhWD7PvpQYzioiMigtLvpRHyolIOlTCrDP4-_gwWC-lo_Z9BgNunx8kEMjp-MQiRaMIww58JwROXT6Vfl)
+
+### Procesamiento
+Como se puede ver en el servidor, en cada conexión de un cliente, se crea un nuevo **ClientProcessor**. Esta clase, extiende de la clase **Thread** ya que se atenderá un cliente en cada hilo. 
+El procesamiento de cada cliente se realiza de la siguiente manera:
+![](http://www.plantuml.com/plantuml/png/ZLFDQi904BxlK-mnWhv0eI8KIW-MIcFfUTsTwD9r9ynCR0i-V5qIGsgYvk31cU_dso-x2nP3Kks3sda7ka2K3VuePQmWwGy6KgKXyTQN9ef-2XwYh0WjC2CfPGcCG6-UY7eslvm_w0ZV6QFz0fbg0iQAB2mzooGv-iEGriN_sRmdQe8_W7xKGXKe1rULZiTZ-brFHrNCnYT94dawY-WJ5UoXPJPZrMpxLYT2IIXeCUH2oi4bi-brrO06hDkThbijFB447s6gD-X-ssDqH5h6VtPfY24Nyd7R9XdllGLvJjPB7o6xvzgleJXpnrhdujugwJBJDxqVyXLaXouRldHZq-v4obfeRDoNzNfLCrBJzQPJKsUlEj11Sm8kCNBTL8-UMhXvGncYoyuQavjG6v3X7OoxZ_eaBz233ULldsbX0jzyfqej8Bfg7_u0)
+
+La respuesta según cada protocolo está definida por las siguientes clases:
+![](http://www.plantuml.com/plantuml/png/VP1BJiGm38RtEKMMiEW58XRTbGMW2fK3j8sX4KsCOeU7nE5dEWyrpdHccU__VijnJTn7JdvMaxEWtn5vm5-b7hkkVGQUqEg7_whI3V0MUmN254Uuo5eateHN6s_XC-1FE2AnWD7VBdBgPqriZI6EBdpehuWZ4DtTIrKu_a1VUWz24auyBNJR6j3-oVJyaIT7h6FsK0rmqTuJOzQ5iyELufhaXULmXRcWGX53fRevLLoyw8WiBwaQWar-tW40)
 
 ## Pruebas
 
