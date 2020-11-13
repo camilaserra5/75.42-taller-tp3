@@ -18,5 +18,4 @@ private:
     std::map <std::string, std::string> resources;
 };
 
-
 #endif //RESOURCE_LIST_H

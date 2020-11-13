@@ -17,5 +17,4 @@ private:
     ClientManager clientManager;
 };
 
-
 #endif //SERVER_H
