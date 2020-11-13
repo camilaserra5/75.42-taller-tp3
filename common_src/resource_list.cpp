@@ -5,11 +5,11 @@
 
 ResourceList::ResourceList() {}
 
-void ResourceList::addResource(std::string name, std::string content) {
+void ResourceList::operator()(std::string name, std::string content) {
     this->resources.insert(std::pair<std::string, std::string>(name, content));
 }
 
-std::string ResourceList::getResource(std::string name) {
+std::string ResourceList::operator()(std::string name) {
     std::map<std::string, std::string>::iterator resource =
             this->resources.find(name);
     if (resource == this->resources.end())

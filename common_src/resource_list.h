@@ -8,9 +8,9 @@ class ResourceList {
 public:
     ResourceList();
 
-    void addResource(std::string name, std::string content);
+    void operator()(std::string name, std::string content);
 
-    std::string getResource(std::string name);
+    std::string operator()(std::string name);
 
     ~ResourceList();
 

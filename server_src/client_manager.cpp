@@ -16,7 +16,7 @@ ClientManager::ClientManager(Socket socket, std::string rootFile) :
     }
     content << std::endl;
     infile.close();
-    this->resourceList.addResource("/", content.str());
+    this->resourceList("/", content.str());
 }
 
 void ClientManager::run() {
