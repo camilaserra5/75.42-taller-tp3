@@ -1,6 +1,5 @@
 #include <sstream>
 #include <string>
-#include <iostream>
 #include "get_resource.h"
 
 std::string GetResource::process() {
