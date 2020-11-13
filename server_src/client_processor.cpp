@@ -3,7 +3,6 @@
 #include <sstream>
 #include <cstring>
 #include <string>
-#include "../common_src/protocol.h"
 #include "client_processor.h"
 
 ClientProcessor::ClientProcessor(Socket socket, const ResourceList &list) :
@@ -11,7 +10,7 @@ ClientProcessor::ClientProcessor(Socket socket, const ResourceList &list) :
     this->is_alive = true;
 }
 
-void ClientProcessor::run() {
+std::string ClientProcessor::getProtocolFromClient() {
     std::string protocolStr = "";
     int cont = 64;
     while (cont == 64) {
@@ -21,7 +20,10 @@ void ClientProcessor::run() {
         for (unsigned int i = 0; i < sizeof(buf); i++)
             protocolStr.push_back(buf[i]);
     }
+    return protocolStr;
+}
 
+Protocol ClientProcessor::createProtocol(std::string protocolStr) {
     std::stringstream stream(protocolStr);
     std::string line;
     std::getline(stream, line);
@@ -36,8 +38,14 @@ void ClientProcessor::run() {
         }
         body_start = body_start || temp.empty();
     }
-
     Protocol protocol(line, body.str().erase(body.str().size() - 1));
+    return protocol;
+}
+
+void ClientProcessor::run() {
+    std::string protocolStr = getProtocolFromClient();
+    Protocol protocol = createProtocol(protocolStr);
+
     std::cout << protocol.getFirstLine() << std::endl;
     std::string resp = protocol.getMethod(resourceList)->process();
 
@@ -53,5 +61,6 @@ bool ClientProcessor::isAlive() {
 }
 
 ClientProcessor::~ClientProcessor() {
+
     this->join();
 }
