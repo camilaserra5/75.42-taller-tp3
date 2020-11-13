@@ -38,7 +38,6 @@ HTTPMethod *Protocol::createPostMethod(ResourceList resourceList) {
 }
 
 std::unique_ptr <HTTPMethod> Protocol::getMethod(ResourceList resourceList) {
-
     if (getMethodStr() == "GET") {
         return std::unique_ptr<HTTPMethod>(createGetMethod(resourceList));
     }
