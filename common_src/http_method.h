@@ -9,8 +9,7 @@ public:
     explicit HTTPMethod(const std::string &methodName,
                         const ResourceList &resourceList);
 
-    HTTPMethod(const std::string &methodName,
-               const std::string &resourceName,
+    HTTPMethod(const std::string &resourceName,
                const std::string &body,
                const ResourceList &resourceList);
 

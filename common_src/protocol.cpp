@@ -17,7 +17,6 @@ Protocol::Protocol(const std::string &line, const std::string &body) :
     }
 }
 
-
 std::string Protocol::getFirstLine() {
     return line;
 }
@@ -26,35 +25,28 @@ std::string Protocol::getMethodStr() {
     return this->tokens.at(0);
 }
 
+HTTPMethod *Protocol::createGetMethod(ResourceList resourceList) {
+    if (getResource() == "/")
+        return new Get(getMethodStr(), resourceList);
+    return new GetResource(getResource(), getBody(), resourceList);
+}
+
+HTTPMethod *Protocol::createPostMethod(ResourceList resourceList) {
+    if (getResource() == "/")
+        return new Post(getMethodStr(), resourceList);
+    return new PostResource(getResource(), getBody(), resourceList);
+}
 
 std::unique_ptr <HTTPMethod> Protocol::getMethod(ResourceList resourceList) {
+
     if (getMethodStr() == "GET") {
-        if (getResource() == "/") {
-            return std::unique_ptr<HTTPMethod>(new Get(getMethodStr(),
-                                                       resourceList));
-        } else {
-            return std::unique_ptr<HTTPMethod>(
-                    new GetResource(getMethodStr(),
-                                    getResource(),
-                                    getBody(),
-                                    resourceList));
-        }
+        return std::unique_ptr<HTTPMethod>(createGetMethod(resourceList));
     }
     if (getMethodStr() == "POST") {
-        if (getResource() == "/") {
-            return std::unique_ptr<HTTPMethod>(new Post(getMethodStr(),
-                                                        resourceList));
-        } else {
-            return std::unique_ptr<HTTPMethod>(
-                    new PostResource(getMethodStr(),
-                                     getResource(),
-                                     getBody(),
-                                     resourceList));
-        }
+        return std::unique_ptr<HTTPMethod>(createPostMethod(resourceList));
     }
-    return std::unique_ptr<HTTPMethod>(
-            new UnknownMethod(getMethodStr(),
-                              resourceList));
+    HTTPMethod *unknownMethod = new UnknownMethod(getMethodStr(), resourceList);
+    return std::unique_ptr<HTTPMethod>(unknownMethod);
 }
 
 std::string Protocol::getResource() {

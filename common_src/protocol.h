@@ -25,6 +25,10 @@ private:
     std::vector <std::string> tokens;
     std::string line;
     std::string body;
+
+    HTTPMethod *createGetMethod(ResourceList resourceList);
+
+    HTTPMethod *createPostMethod(ResourceList resourceList);
 };
 
 

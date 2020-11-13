@@ -5,6 +5,7 @@
 std::string PostResource::process() {
     resourceList.addResource(this->resourceName, this->body);
     std::string header = "HTTP/1.1 200 OK\n\n";
+
     std::stringstream stream;
     stream << header << this->body;
     return stream.str();
