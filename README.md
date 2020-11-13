@@ -14,7 +14,6 @@ En el presente informe se detalla la solución propuesta y las diferentes prueba
 
 * [Objetivos](#objetivos)
 * [Diseño](#diseño)
-* [Pruebas](#pruebas)
 * [Referencias](#referencias)
 
 ## Objetivos
@@ -119,9 +118,6 @@ El procesamiento de cada cliente se realiza de la siguiente manera:
 
 La respuesta según cada protocolo está definida por las siguientes clases:
 ![](http://www.plantuml.com/plantuml/png/VP1BJiGm38RtEKMMiEW58XRTbGMW2fK3j8sX4KsCOeU7nE5dEWyrpdHccU__VijnJTn7JdvMaxEWtn5vm5-b7hkkVGQUqEg7_whI3V0MUmN254Uuo5eateHN6s_XC-1FE2AnWD7VBdBgPqriZI6EBdpehuWZ4DtTIrKu_a1VUWz24auyBNJR6j3-oVJyaIT7h6FsK0rmqTuJOzQ5iyELufhaXULmXRcWGX53fRevLLoyw8WiBwaQWar-tW40)
-
-## Pruebas
-
 
 ## Referencias
 * [cpp reference](https://en.cppreference.com/w/)  
