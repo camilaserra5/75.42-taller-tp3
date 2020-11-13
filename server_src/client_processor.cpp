@@ -38,7 +38,10 @@ Protocol ClientProcessor::createProtocol(std::string protocolStr) {
         }
         body_start = body_start || temp.empty();
     }
-    Protocol protocol(line, body.str().erase(body.str().size() - 1));
+
+    std::string bodyStr = body_start ?
+                          body.str().erase(body.str().size() - 1) : "";
+    Protocol protocol(line, bodyStr);
     return protocol;
 }
 
@@ -61,6 +64,5 @@ bool ClientProcessor::isAlive() {
 }
 
 ClientProcessor::~ClientProcessor() {
-
     this->join();
 }
