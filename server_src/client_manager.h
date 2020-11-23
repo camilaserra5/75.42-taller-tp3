@@ -12,6 +12,8 @@ public:
 
     void run() override;
 
+    void stop();
+
     ~ClientManager() override;
 
 private:

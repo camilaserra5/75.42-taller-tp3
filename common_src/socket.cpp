@@ -97,6 +97,11 @@ Socket Socket::accept() {
     return Socket(fd);
 }
 
+void Socket::shutdown() {
+    ::shutdown(this->fd, SHUT_WR);
+    ::shutdown(this->fd, SHUT_RD);
+}
+
 int Socket::send(char *buffer, size_t buffer_length) {
     size_t total = 0;
     while (total < buffer_length) {

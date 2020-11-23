@@ -11,6 +11,8 @@ Server::Server(Socket socket, const std::string &rootFile) :
 void Server::run() {
     while (std::cin.get() != 'q') {
     }
+    this->clientManager.stop();
+    this->clientManager.join();
 }
 
 Server::~Server() {}

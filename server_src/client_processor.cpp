@@ -66,6 +66,4 @@ bool ClientProcessor::isAlive() {
     return this->is_alive;
 }
 
-ClientProcessor::~ClientProcessor() {
-    this->join();
-}
+ClientProcessor::~ClientProcessor() {}

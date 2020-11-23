@@ -26,6 +26,8 @@ public:
 
     Socket accept();
 
+    void shutdown();
+
     int send(char *buffer, size_t buffer_length);
 
     int recv(char *buffer, size_t buffer_length);
