@@ -8,9 +8,9 @@ class ResourceList {
 public:
     ResourceList();
 
-    void operator()(std::string name, std::string content);
+    void operator()(const std::string &name, const std::string &content);
 
-    std::string operator()(std::string name);
+    std::string operator()(const std::string &name);
 
     ~ResourceList();
 
