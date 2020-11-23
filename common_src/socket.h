@@ -16,7 +16,7 @@ public:
 
     Socket &operator=(Socket &&socket);
 
-    int connect(char *host, char *port);
+    Socket(char *host, char *port);
 
     int bind(char *port);
 

@@ -26,15 +26,15 @@ Socket &Socket::operator=(Socket &&socket) {
     return *this;
 }
 
-int Socket::connect(char *host, char *port) {
+Socket::Socket(char *host, char *port) {
     struct addrinfo hints;
     struct addrinfo *addr_info;
 
     memset(&hints, 0, sizeof(struct addrinfo));
     hints.ai_family = AF_INET;
     hints.ai_socktype = SOCK_STREAM;
-    if (getaddrinfo(NULL, port, &hints, &addr_info) != 0) {
-        return -1;
+    if (getaddrinfo(host, port, &hints, &addr_info) != 0) {
+        throw std::runtime_error("Error in getaddrinfo");
     }
 
     int temp_fd = -1;
@@ -52,7 +52,9 @@ int Socket::connect(char *host, char *port) {
 
     this->fd = temp_fd;
     freeaddrinfo(addr_info);
-    return this->fd == -1;
+    if (this->fd) {
+        throw std::runtime_error("Error while trying to connect");
+    }
 }
 
 int Socket::bind(char *port) {
