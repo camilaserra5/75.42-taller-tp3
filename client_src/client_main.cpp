@@ -18,7 +18,12 @@ int main(int argc, char *argv[]) {
 
     char *host = argv[HOST_PARAM];
     char *port = argv[PORT_PARAM];
-    Socket socket(host, port);
+    Socket socket;
+    if (socket.connect(host, port) != OK_CODE) {
+        std::cout << "connect error";
+        return ERR_CODE;
+    }
+
     Client client(std::move(socket));
     client.run();
     return OK_CODE;
