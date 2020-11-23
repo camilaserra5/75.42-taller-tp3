@@ -5,6 +5,8 @@
 #include <string>
 #include "client_processor.h"
 
+#define BUFF_SIZE 64
+
 ClientProcessor::ClientProcessor(Socket socket, const ResourceList &list) :
         socket(std::move(socket)), resourceList(list) {
     this->is_alive = true;
@@ -12,11 +14,11 @@ ClientProcessor::ClientProcessor(Socket socket, const ResourceList &list) :
 
 std::string ClientProcessor::getProtocolFromClient() {
     std::string protocolStr = "";
-    int cont = 64;
-    while (cont == 64) {
-        char buf[64];
+    int cont = BUFF_SIZE;
+    while (cont == BUFF_SIZE) {
+        char buf[BUFF_SIZE];
         memset(buf, 0, sizeof(buf));
-        cont = this->socket.recv(buf, 64);
+        cont = this->socket.recv(buf, BUFF_SIZE);
         for (unsigned int i = 0; i < sizeof(buf); i++)
             protocolStr.push_back(buf[i]);
     }

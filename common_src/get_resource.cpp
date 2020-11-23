@@ -2,13 +2,13 @@
 #include <string>
 #include "get_resource.h"
 
+#define OK_MSG "HTTP/1.1 200 OK\n\n"
+#define ERROR_MSG "HTTP/1.1 404 NOT FOUND\n\n”"
+
 std::string GetResource::process() {
     std::string content = resourceList(this->resourceName);
     if (content.empty()) {
-        return "HTTP/1.1 404 NOT FOUND\n\n”";
+        return ERROR_MSG;
     }
-    std::string header = "HTTP/1.1 200 OK\n\n";
-    std::stringstream stream;
-    stream << header << content;
-    return stream.str();
+    return OK_MSG + content;
 }

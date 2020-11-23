@@ -2,9 +2,9 @@
 #include <string>
 #include "get.h"
 
+#define BASE_PATH "/"
+#define OK_MSG "HTTP/1.1 200 OK\nContent-Type: text/html\n\n"
+
 std::string Get::process() {
-    std::string header = "HTTP/1.1 200 OK\nContent-Type: text/html\n\n";
-    std::stringstream stream;
-    stream << header << resourceList("/");
-    return stream.str();
+    return OK_MSG + resourceList(BASE_PATH);
 }

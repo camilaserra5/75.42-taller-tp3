@@ -5,6 +5,8 @@
 #include <cstring>
 #include "client.h"
 
+#define BUFF_SIZE 64
+
 Client::Client(Socket socket) : socket(std::move(socket)) {}
 
 std::stringstream Client::getStreamFromStdin() {
@@ -19,21 +21,21 @@ std::stringstream Client::getStreamFromStdin() {
 void Client::sendStreamToServer(std::string str) {
     std::stringstream stream(str);
     while (stream.peek() != EOF) {
-        char buf[64];
+        char buf[BUFF_SIZE];
         memset(buf, 0, sizeof(buf));
-        stream.read(buf, 64);
-        this->socket.send(buf, 64);
+        stream.read(buf, BUFF_SIZE);
+        this->socket.send(buf, BUFF_SIZE);
     }
 }
 
 std::string Client::getResponse() {
     std::stringstream stream;
-    int cont = 64;
-    while (cont == 64) {
-        char buf[64];
+    int cont = BUFF_SIZE;
+    while (cont == BUFF_SIZE) {
+        char buf[BUFF_SIZE];
         buf[0] = 0;
         memset(buf, 0, sizeof(buf));
-        cont = this->socket.recv(buf, 64);
+        cont = this->socket.recv(buf, BUFF_SIZE);
         for (unsigned int i = 0; i < sizeof(buf); i++) {
             if (buf[i] != 0) {
                 stream << buf[i];

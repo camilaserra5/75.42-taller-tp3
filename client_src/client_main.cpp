@@ -3,21 +3,28 @@
 #include "client.h"
 #include "../common_src/socket.h"
 
+#define OK_CODE 0
+#define ERR_CODE 1
+#define NBR_PARAMS 3
+#define HOST_PARAM 1
+#define PORT_PARAM 2
+#define USAGE "Uso: ./client <pip/hostname> <port/service>"
+
 int main(int argc, char *argv[]) {
-    if (argc != 3) {
-        std::cout << "Uso: ./client <pip/hostname> <port/service>";
-        return 1;
+    if (argc != NBR_PARAMS) {
+        std::cout << USAGE;
+        return ERR_CODE;
     }
 
-    char *host = argv[1];
-    char *port = argv[2];
+    char *host = argv[HOST_PARAM];
+    char *port = argv[PORT_PARAM];
     Socket socket;
-    if (socket.connect(host, port) != 0) {
+    if (socket.connect(host, port) != OK_CODE) {
         std::cout << "connect error";
-        return -1;
+        return ERR_CODE;
     }
 
     Client client(std::move(socket));
     client.run();
-    return 0;
+    return OK_CODE;
 }

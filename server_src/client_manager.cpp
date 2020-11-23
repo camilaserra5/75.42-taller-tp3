@@ -6,6 +6,8 @@
 #include "client_manager.h"
 #include "client_processor.h"
 
+#define BASE_PATH "/"
+
 ClientManager::ClientManager(Socket socket, std::string rootFile) :
         socket(std::move(socket)), resourceList() {
     std::ifstream infile(rootFile);
@@ -16,7 +18,7 @@ ClientManager::ClientManager(Socket socket, std::string rootFile) :
     }
     content << std::endl;
     infile.close();
-    this->resourceList("/", content.str());
+    this->resourceList(BASE_PATH, content.str());
 }
 
 void ClientManager::run() {
