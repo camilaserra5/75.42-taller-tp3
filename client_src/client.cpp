@@ -33,14 +33,8 @@ std::string Client::getResponse() {
     int cont = BUFF_SIZE;
     while (cont == BUFF_SIZE) {
         char buf[BUFF_SIZE];
-        buf[0] = 0;
-        memset(buf, 0, sizeof(buf));
         cont = this->socket.recv(buf, BUFF_SIZE);
-        for (unsigned int i = 0; i < sizeof(buf); i++) {
-            if (buf[i] != 0) {
-                stream << buf[i];
-            }
-        }
+        stream.write(buf, cont);
     }
     return stream.str();
 }

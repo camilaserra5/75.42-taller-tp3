@@ -13,16 +13,14 @@ ClientProcessor::ClientProcessor(Socket socket, const ResourceList &list) :
 }
 
 std::string ClientProcessor::getProtocolFromClient() {
-    std::string protocolStr = "";
+    std::stringstream s;
     int cont = BUFF_SIZE;
     while (cont == BUFF_SIZE) {
         char buf[BUFF_SIZE];
-        memset(buf, 0, sizeof(buf));
         cont = this->socket.recv(buf, BUFF_SIZE);
-        for (unsigned int i = 0; i < sizeof(buf); i++)
-            protocolStr.push_back(buf[i]);
+        s.write(buf, cont);
     }
-    return protocolStr;
+    return s.str();
 }
 
 Protocol ClientProcessor::createProtocol(std::string protocolStr) {
@@ -33,17 +31,20 @@ Protocol ClientProcessor::createProtocol(std::string protocolStr) {
     bool body_start = false;
     std::string temp;
     std::stringstream body;
+    long bodyLen = 0;
+
 
     while (std::getline(stream, temp)) {
-        if (body_start) {
+        if (temp.find("Content-Length") != std::string::npos) {
+            bodyLen = stol(temp.substr(temp.find(":") + 2));
+        }
+        if (body_start && body.tellp() != bodyLen) {
             body << temp << std::endl;
         }
         body_start = body_start || temp.empty();
     }
 
-    std::string bodyStr = body_start ?
-                          body.str().erase(body.str().size() - 1) : "";
-    Protocol protocol(line, bodyStr);
+    Protocol protocol(line, body.str());
     return protocol;
 }
 
