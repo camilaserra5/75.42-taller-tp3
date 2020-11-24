@@ -4,23 +4,12 @@
 #include <cstring>
 #include <string>
 #include "client_processor.h"
-
+#include "../common_src/tcp_protocol.h"
 #define BUFF_SIZE 64
 
 ClientProcessor::ClientProcessor(Socket socket, const ResourceList &list) :
         socket(std::move(socket)), resourceList(list) {
     this->is_alive = true;
-}
-
-std::string ClientProcessor::getProtocolFromClient() {
-    std::stringstream s;
-    int cont = BUFF_SIZE;
-    while (cont == BUFF_SIZE) {
-        char buf[BUFF_SIZE];
-        cont = this->socket.recv(buf, BUFF_SIZE);
-        s.write(buf, cont);
-    }
-    return s.str();
 }
 
 Protocol ClientProcessor::createProtocol(std::string protocolStr) {
@@ -49,14 +38,13 @@ Protocol ClientProcessor::createProtocol(std::string protocolStr) {
 }
 
 void ClientProcessor::run() {
-    std::string protocolStr = getProtocolFromClient();
+    std::string protocolStr = TCPProtocol::receive(this->socket);
     Protocol protocol = createProtocol(protocolStr);
 
     std::cout << protocol.getFirstLine() << std::endl;
     std::string resp = protocol.getMethod(resourceList)->process();
 
-    char *my_argument = const_cast<char *> (resp.c_str());
-    this->socket.send(my_argument, resp.length());
+    TCPProtocol::send(this->socket, resp);
     this->socket.closeRead();
     this->socket.closeWrite();
     this->is_alive = false;

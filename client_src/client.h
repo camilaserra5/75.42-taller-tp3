@@ -15,11 +15,7 @@ public:
 private:
     Socket socket;
 
-    std::stringstream getStreamFromStdin();
-
-    void sendStreamToServer(std::string stream);
-
-    std::string getResponse();
+    void sendStdInputToServer();
 };
 
 #endif //CLIENT_H

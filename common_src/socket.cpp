@@ -89,6 +89,10 @@ int Socket::listen() {
     return ::listen(this->fd, MAX_CONNECTIONS) != 0;
 }
 
+int Socket::getFd() {
+    return this->fd;
+}
+
 Socket Socket::accept() {
     int fd = ::accept(this->fd, nullptr, nullptr);
     if (fd == -1) {

@@ -24,6 +24,8 @@ public:
 
     bool valid();
 
+    int getFd();
+
     Socket accept();
 
     void shutdown();
