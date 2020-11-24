@@ -26,7 +26,7 @@ Socket &Socket::operator=(Socket &&socket) {
     return *this;
 }
 
-int Socket::connect(char *host, char *port) {
+Socket::Socket(char *host, char *port) {
     struct addrinfo hints;
     struct addrinfo *addr_info;
 
@@ -34,7 +34,7 @@ int Socket::connect(char *host, char *port) {
     hints.ai_family = AF_INET;
     hints.ai_socktype = SOCK_STREAM;
     if (getaddrinfo(NULL, port, &hints, &addr_info) != 0) {
-        return -1;
+        throw std::runtime_error("Error in getaddrinfo");
     }
 
     int temp_fd = -1;
@@ -52,7 +52,9 @@ int Socket::connect(char *host, char *port) {
 
     this->fd = temp_fd;
     freeaddrinfo(addr_info);
-    return this->fd == -1;
+    if (!valid()) {
+        throw std::runtime_error("Error while trying to connect");
+    }
 }
 
 int Socket::bind(char *port) {
@@ -104,36 +106,6 @@ Socket Socket::accept() {
 void Socket::shutdown() {
     ::shutdown(this->fd, SHUT_WR);
     ::shutdown(this->fd, SHUT_RD);
-}
-
-int Socket::send(char *buffer, size_t buffer_length) {
-    size_t total = 0;
-    while (total < buffer_length) {
-        size_t bytes_sent = ::send(this->fd,
-                                   &buffer[total],
-                                   buffer_length - total,
-                                   MSG_NOSIGNAL);
-        total += bytes_sent;
-        if (bytes_sent == 0) {
-            return total;
-        }
-    }
-    return total;
-}
-
-int Socket::recv(char *buffer, size_t buffer_length) {
-    size_t total = 0;
-    while (total < buffer_length) {
-        size_t bytes_written = ::recv(this->fd,
-                                      &buffer[total],
-                                      buffer_length - total,
-                                      0);
-        total += bytes_written;
-        if (bytes_written == 0) {
-            return total;
-        }
-    }
-    return total;
 }
 
 void Socket::closeWrite() {

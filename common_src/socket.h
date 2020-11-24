@@ -16,7 +16,7 @@ public:
 
     Socket &operator=(Socket &&socket);
 
-    int connect(char *host, char *port);
+    Socket(char *host, char *port);
 
     int bind(char *port);
 
@@ -29,10 +29,6 @@ public:
     Socket accept();
 
     void shutdown();
-
-    int send(char *buffer, size_t buffer_length);
-
-    int recv(char *buffer, size_t buffer_length);
 
     void closeWrite();
 
