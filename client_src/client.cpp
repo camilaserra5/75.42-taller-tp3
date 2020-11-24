@@ -2,6 +2,7 @@
 #include <string>
 #include "client.h"
 #include "../common_src/tcp_protocol.h"
+#include <utility>
 
 #define END_LINE "\n"
 
