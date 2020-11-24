@@ -4,10 +4,23 @@
 #include <string>
 #include "socket.h"
 
+/**
+ * The TCP Protocol. Sends and receives messages through a socket connection.
+ */
 namespace TCPProtocol {
-    void send(Socket &skt, std::string message);
+    /**
+     * Sends the @message
+     * @param socket: the socket connection
+     * @param message: the message to be sent
+     */
+    void send(Socket &socket, std::string message);
 
-    std::string receive(Socket &skt);
+    /**
+     * Receives a message
+     * @param socket: the socket connection
+     * @return the message received
+     */
+    std::string receive(Socket &socket);
 }
 
 #endif //TCP_PROTOCOL_H

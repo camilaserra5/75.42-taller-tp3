@@ -22,7 +22,6 @@ Protocol ClientProcessor::createProtocol(std::string protocolStr) {
     std::stringstream body;
     long bodyLen = 0;
 
-
     while (std::getline(stream, temp)) {
         if (temp.find("Content-Length") != std::string::npos) {
             bodyLen = stol(temp.substr(temp.find(":") + 2));

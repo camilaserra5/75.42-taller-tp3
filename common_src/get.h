@@ -4,6 +4,10 @@
 #include "http_method.h"
 #include <string>
 
+/**
+ * The Get Method. Handles a GET/ HTTP method.
+ * Returns the content for the root resource.
+ */
 class Get : public HTTPMethod {
 public:
     using HTTPMethod::HTTPMethod;

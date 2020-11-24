@@ -7,14 +7,34 @@
 #include "../common_src/protocol.h"
 #include <string>
 
+/**
+ * The client processor.
+ * In charge of processing an individual client.
+ */
 class ClientProcessor : public Thread {
 public:
+    /**
+     * Creates the processor
+     * @param socket: the socket corresponding to the connection with a client
+     * @param resourceList
+     */
     ClientProcessor(Socket socket, const ResourceList &resourceList);
 
+    /**
+     * Processes the protocol received.
+     * Sends the response to the client.
+     * Closes the connection.
+     */
     void run() override;
 
+    /**
+     * @return true while still processing. false, when already done.
+     */
     bool isAlive();
 
+    /**
+     * Client processor destructor.
+     */
     ~ClientProcessor() override;
 
 private:

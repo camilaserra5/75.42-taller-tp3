@@ -4,6 +4,9 @@
 #include <string>
 #include "resource_list.h"
 
+/**
+ * Interface for the different HTTP Method handling.
+ */
 class HTTPMethod {
 public:
     explicit HTTPMethod(const std::string &methodName,
@@ -13,6 +16,10 @@ public:
                const std::string &body,
                const ResourceList &resourceList);
 
+    /**
+     * Processes the given method.
+     * @return the response
+     */
     virtual std::string process() = 0;
 
 protected:

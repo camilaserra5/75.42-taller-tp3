@@ -8,7 +8,7 @@
 
 #define BASE_PATH "/"
 
-ClientManager::ClientManager(Socket socket, std::string rootFile) :
+ClientManager::ClientManager(Socket socket, const std::string &rootFile) :
         socket(std::move(socket)), resourceList() {
     std::ifstream infile(rootFile);
     std::string line;
